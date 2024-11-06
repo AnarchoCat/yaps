@@ -8,4 +8,8 @@ export default withNuxt(
   rules: {
     'vue/singleline-html-element-content-newline': 'off'
   }
+}).override('nuxt/stylistic', {
+  rules: {
+    '@stylistic/eol-last': 'off'
+  }
 })
