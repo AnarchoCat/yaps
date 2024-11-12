@@ -6,7 +6,14 @@ export default withNuxt(
 
 ).override('nuxt/vue/rules', {
   rules: {
-    'vue/singleline-html-element-content-newline': 'off'
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/html-self-closing': ['error', {
+      html: {
+        normal: 'never',
+        void: 'always'
+      }
+    }],
+    'vue/max-attributes-per-line': 'off'
   }
 }).override('nuxt/stylistic', {
   rules: {

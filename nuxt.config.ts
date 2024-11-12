@@ -2,6 +2,13 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@nuxt/eslint', '@nuxt/content'],
   devtools: { enabled: true },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'zh-CN'
+      }
+    }
+  },
   compatibilityDate: '2024-04-03',
   eslint: {
     config: {
