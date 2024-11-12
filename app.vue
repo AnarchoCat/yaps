@@ -3,6 +3,8 @@
     <AppHeader />
   </header>
   <main>
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </main>
 </template>

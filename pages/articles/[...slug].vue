@@ -1,5 +1,5 @@
 <template>
-  <article class="content-article container max-w-screen-lg mx-auto">
+  <article class="content-article">
     <ContentDoc />
   </article>
 </template>
