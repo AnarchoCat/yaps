@@ -16,22 +16,22 @@ onMounted(() => {
 <style lang="postcss">
 .content-article {
   h1 {
-    @apply text-3xl md:text-4xl font-bold;
+    @apply text-3xl md:text-4xl font-bold border-b drop-shadow-sm mb-4 md:mb-6 pb-1;
   }
   h2 {
-    @apply text-2xl md:text-3xl font-bold;
+    @apply text-2xl md:text-3xl font-bold border-l-4 border-pink-800 bg-gradient-to-r from-fuchsia-50 to-white pl-4 py-1 my-4;
   }
   h3 {
-    @apply text-xl md:text-2xl font-bold;
+    @apply text-xl md:text-2xl font-bold my-4 border-l-8 border-pink-800 pl-4;
   }
   h4 {
-    @apply text-lg md:text-xl font-bold;
+    @apply text-lg md:text-xl font-bold my-4 border-l-8 border-indigo-800 pl-4;
   }
   h5 {
-    @apply text-base md:text-lg font-bold;
+    @apply text-base md:text-lg font-bold my-4 border-l-8 border-emerald-800 pl-4;
   }
   h6 {
-    @apply text-base font-bold;
+    @apply text-base font-bold my-4;
   }
   input[type='checkbox'] {
     @apply appearance-none w-4 h-4 text-blue-600 border border-gray-400 rounded-sm align-middle transition-all;
