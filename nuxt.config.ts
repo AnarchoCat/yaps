@@ -9,6 +9,11 @@ export default defineNuxtConfig({
       }
     }
   },
+  content: {
+    highlight: {
+      theme: 'github-light'
+    }
+  },
   compatibilityDate: '2024-04-03',
   eslint: {
     config: {

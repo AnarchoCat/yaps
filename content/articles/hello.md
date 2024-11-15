@@ -6,6 +6,14 @@ title: Hello
 这是一个测试页面。
 此页面用来测试网页外观。
 
+- [x] Test
+
+```js
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
+
 ## H2标题
 
 正文正文正文正文正文正文
