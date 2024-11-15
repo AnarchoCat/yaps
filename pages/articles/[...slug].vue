@@ -31,7 +31,7 @@ onMounted(() => {
     @apply text-base md:text-lg font-bold;
   }
   h6 {
-    @apply text-sm md:text-base font-bold;
+    @apply text-base font-bold;
   }
   input[type='checkbox'] {
     @apply appearance-none w-4 h-4 text-blue-600 border border-gray-400 rounded-sm align-middle transition-all;
