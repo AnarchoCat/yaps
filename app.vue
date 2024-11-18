@@ -16,6 +16,9 @@ useHead({
 </script>
 
 <style lang="postcss">
+:root {
+  @apply scroll-smooth;
+}
 .page-enter-active,
 .page-leave-active {
   @apply transition-all duration-300;
