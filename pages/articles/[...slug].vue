@@ -1,10 +1,34 @@
 <template>
   <article class="content-article container max-w-screen-lg p-4 md:px-6 md:py-8 mx-auto">
     <ContentDoc />
+    <button class="fixed right-4 bottom-4 md:right-6 md:bottom-8 p-2 rounded-full border border-gray-300 bg-white z-50 shadow" @click="toggleTocModal"><ListBulletIcon class="w-6 h-6" /></button>
+    <dialog ref="toc-modal" autofocus class="fixed box-content left-0 md:left-1/2 top-0 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 m-0 w-full h-full md:w-fit md:h-fit open:flex justify-center items-start px-4 pt-10 md:rounded md:backdrop:bg-black/30">
+      <Toc :depth="3" />
+      <XMarkIcon class="w-6 h-6 absolute top-4 right-4 cursor-pointer" @click="toggleTocModal" />
+    </dialog>
   </article>
 </template>
 
 <script lang="ts" setup>
+import { ListBulletIcon, XMarkIcon } from '@heroicons/vue/24/solid'
+
+const tocModal = useTemplateRef('toc-modal')
+
+function toggleTocModal() {
+  if (tocModal.value?.hasAttribute('open')) {
+    tocModal.value?.classList.remove('open:animate-fade-in')
+    tocModal.value?.classList.add('open:animate-fade-out')
+    setTimeout(() => {
+      tocModal.value?.close()
+    }, 190)
+  }
+  else {
+    tocModal.value?.showModal()
+    tocModal.value?.classList.remove('open:animate-fade-out')
+    tocModal.value?.classList.add('open:animate-fade-in')
+  }
+}
+
 onMounted(() => {
   const article = document.querySelector('.content-article')
   article?.querySelectorAll('input[type=checkbox]:disabled').forEach((el) => {
@@ -15,6 +39,12 @@ onMounted(() => {
     label.innerHTML = el.innerHTML
     el.innerHTML = ''
     el.appendChild(label)
+  })
+  tocModal.value?.addEventListener('click', function (e) {
+    const { top, left, width, height } = this.getBoundingClientRect()
+    if (e.clientX < left || e.clientX > left + width || e.clientY < top || e.clientY > top + height) {
+      toggleTocModal()
+    }
   })
 })
 </script>
@@ -45,6 +75,9 @@ onMounted(() => {
       @apply bg-current border-none;
       background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
     }
+  }
+  pre {
+    @apply max-w-full overflow-auto;
   }
 }
 </style>
