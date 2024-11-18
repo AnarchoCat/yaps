@@ -1,5 +1,8 @@
 <template>
   <div class="max-w-screen-lg mx-auto p-4 md:py-8 md:px-6">
+    <Head>
+      <Title>文章</Title>
+    </Head>
     <h1 class="text-2xl md:text-3xl text-center mb-4 md:mb-6">文章目录</h1>
     <ContentList v-slot="{ list }">
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

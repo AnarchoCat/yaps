@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="container mx-auto p-4 md:px-6 md:py-8">
+    <Head>
+      <Title />
+    </Head>
     <h1>首页</h1>
     <div class="mx-auto w-fit text-8xl animate-spin text-center">🙀</div>
     <article class="text-sm md:text-base mx-auto w-fit p-4 border-2 border-rose-600 shadow shadow-red-800">
@@ -19,3 +22,6 @@
     </article>
   </div>
 </template>
+
+<script setup lang="ts">
+</script>
