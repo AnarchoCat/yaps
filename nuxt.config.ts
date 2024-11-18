@@ -45,6 +45,11 @@ export default defineNuxtConfig({
     }
   },
   compatibilityDate: '2024-04-03',
+  postcss: {
+    plugins: {
+      'postcss-nesting': {}
+    }
+  },
   eslint: {
     config: {
       stylistic: {
@@ -55,5 +60,5 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css'
-  },
+  }
 })
