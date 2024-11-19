@@ -3,10 +3,10 @@
     <ContentRenderer :value="data as any">
       <ContentRendererMarkdown :value="data as any" :data="mdcVars" />
     </ContentRenderer>
-    <button class="fixed right-4 bottom-4 md:right-6 md:bottom-8 p-2 rounded-full border border-gray-300 bg-white z-50 shadow hover:shadow-md transition-all opacity-70 hover:opacity-100" @click="toggleTocModal">
+    <button class="fixed right-4 bottom-4 md:right-6 md:bottom-8 p-2 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 z-50 shadow hover:shadow-md transition-all opacity-70 hover:opacity-100" @click="toggleTocModal">
       <ListBulletIcon class="w-6 h-6" />
     </button>
-    <dialog ref="toc-modal" autofocus class="fixed box-content left-0 md:left-1/2 top-0 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 m-0 w-full h-full md:w-fit md:h-fit open:flex flex-col items-center px-4 pt-10 pb-4 md:rounded md:backdrop:bg-black/30">
+    <dialog ref="toc-modal" autofocus class="fixed box-content left-0 md:left-1/2 top-0 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 m-0 w-full h-full md:w-fit md:h-fit open:flex flex-col items-center px-4 pt-10 pb-4 md:rounded md:backdrop:bg-black/30 dark:md:backdrop:bg-white/30 dark:bg-gray-900 dark:text-white">
       <Toc :depth="3" :value="tocLinks" @jump="closeTocModal" />
       <XMarkIcon class="w-6 h-6 absolute top-4 right-4 cursor-pointer" @click="closeTocModal" />
       <div class="cursor-pointer flex gap-2" @click.prevent="scrollToTop">
@@ -84,16 +84,16 @@ onMounted(() => {
     @apply text-3xl md:text-4xl font-bold border-b drop-shadow-sm mb-4 md:mb-6 pb-1;
   }
   h2 {
-    @apply text-2xl md:text-3xl font-bold border-l-4 border-pink-800 bg-gradient-to-r from-fuchsia-50 to-white pl-4 py-1 my-4;
+    @apply text-2xl md:text-3xl font-bold border-l-4 border-pink-800 dark:border-pink-200 bg-gradient-to-r from-fuchsia-900 to-gray-900 pl-4 py-1 my-4;
   }
   h3 {
-    @apply text-xl md:text-2xl font-bold my-4 border-l-8 border-pink-800 pl-2 md:pl-4;
+    @apply text-xl md:text-2xl font-bold my-4 border-l-8 border-pink-800 dark:border-pink-200 pl-2 md:pl-4;
   }
   h4 {
-    @apply text-lg md:text-xl font-bold my-4 border-l-8 border-indigo-800 pl-2 md:pl-4;
+    @apply text-lg md:text-xl font-bold my-4 border-l-8 border-indigo-800 dark:border-indigo-200 pl-2 md:pl-4;
   }
   h5 {
-    @apply text-base md:text-lg font-bold my-4 border-l-8 border-emerald-800 pl-2 md:pl-4;
+    @apply text-base md:text-lg font-bold my-4 border-l-8 border-emerald-800 dark:border-emerald-200 pl-2 md:pl-4;
   }
   h6 {
     @apply text-base font-bold my-4;

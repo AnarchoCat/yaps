@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="value !== undefined" class="text-indigo-800 border border-indigo-300 w-fit p-4 rounded my-4">
+  <ul v-if="value !== undefined" class="text-indigo-800 dark:text-indigo-50 border border-indigo-300 dark:border-indigo-600 w-fit p-4 rounded my-4">
     <li v-for="link in value" :key="link.id">
       <div class="flex justify-between items-center gap-4 peer">
         <NuxtLink :to="`#${link.id}`" @click="$emit('jump')">{{ link.text }}</NuxtLink>

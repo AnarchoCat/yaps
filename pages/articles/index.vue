@@ -7,7 +7,7 @@
     <ContentList v-slot="{ list }">
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <li v-for="article in list" :key="article._path">
-          <NuxtLink :to="article._path" class="w-full h-full flex flex-col gap-2 p-4 rounded bg-sky-50 hover:bg-fuchsia-50 transition-colors">
+          <NuxtLink :to="article._path" class="w-full h-full flex flex-col gap-2 p-4 rounded bg-sky-50 dark:bg-sky-900 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900 transition-colors">
             <h2 class="font-bold">{{ article.title }}</h2>
             <p>{{ article.description }}</p>
           </NuxtLink>
