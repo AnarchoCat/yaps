@@ -1,9 +1,13 @@
 <template>
-  <article class="content-article container max-w-screen-lg p-4 md:px-6 md:py-8 mx-auto">
-    <ContentDoc />
-    <button class="fixed right-4 bottom-4 md:right-6 md:bottom-8 p-2 rounded-full border border-gray-300 bg-white z-50 shadow" @click="toggleTocModal"><ListBulletIcon class="w-6 h-6" /></button>
+  <article ref="article" class="content-article container max-w-screen-lg p-4 md:px-6 md:py-8 mx-auto">
+    <ContentRenderer :value="data as any">
+      <ContentRendererMarkdown :value="data as any" :data="mdcVars" />
+    </ContentRenderer>
+    <button class="fixed right-4 bottom-4 md:right-6 md:bottom-8 p-2 rounded-full border border-gray-300 bg-white z-50 shadow" @click="toggleTocModal">
+      <ListBulletIcon class="w-6 h-6" />
+    </button>
     <dialog ref="toc-modal" autofocus class="fixed box-content left-0 md:left-1/2 top-0 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 m-0 w-full h-full md:w-fit md:h-fit open:flex flex-col items-center px-4 pt-10 pb-4 md:rounded md:backdrop:bg-black/30">
-      <Toc :depth="3" @jump="closeTocModal" />
+      <Toc :depth="3" :value="tocLinks" @jump="closeTocModal" />
       <XMarkIcon class="w-6 h-6 absolute top-4 right-4 cursor-pointer" @click="closeTocModal" />
       <div class="cursor-pointer flex gap-2" @click.prevent="scrollToTop">
         <ArrowUpCircleIcon class="w-6 h-6" />
@@ -17,12 +21,19 @@
 import { ListBulletIcon, XMarkIcon } from '@heroicons/vue/24/solid'
 import { ArrowUpCircleIcon } from '@heroicons/vue/24/outline'
 
+const route = useRoute()
+const { data } = await useAsyncData('page-data', () => queryContent(route.path).findOne())
+const tocLinks = data.value?.body?.toc?.links
+// Data passed to markdown. Can access with $doc.varname just like front matter.
+const mdcVars = ref({ toc: tocLinks })
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
   closeTocModal()
 }
 
 const tocModal = useTemplateRef('toc-modal')
+const article = useTemplateRef('article')
 
 function openTocModal() {
   tocModal.value?.classList.remove('open:animate-fade-out')
@@ -47,15 +58,16 @@ function toggleTocModal() {
 }
 
 onMounted(() => {
-  const article = document.querySelector('.content-article')
-  article?.querySelectorAll('input[type=checkbox]:disabled').forEach((el) => {
+  article.value?.querySelectorAll('input[type=checkbox]:disabled').forEach((el) => {
     el.removeAttribute('disabled')
   })
-  article?.querySelectorAll('li.task-list-item').forEach((el) => {
-    const label = document.createElement('label')
-    label.innerHTML = el.innerHTML
-    el.innerHTML = ''
-    el.appendChild(label)
+  article.value?.querySelectorAll('li.task-list-item').forEach((el) => {
+    if (el.querySelectorAll('label').length < 1) {
+      const label = document.createElement('label')
+      label.innerHTML = el.innerHTML
+      el.innerHTML = ''
+      el.appendChild(label)
+    }
   })
   tocModal.value?.addEventListener('click', function (e) {
     const { top, left, width, height } = this.getBoundingClientRect()

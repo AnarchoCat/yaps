@@ -1,31 +1,31 @@
 <template>
-  <ul class="text-indigo-800 border border-indigo-300 w-fit p-4 rounded my-4">
-    <li v-for="section in toc" :key="section.text">
+  <ul v-if="value !== undefined" class="text-indigo-800 border border-indigo-300 w-fit p-4 rounded my-4">
+    <li v-for="link in value" :key="link.id">
       <div class="flex justify-between items-center gap-4 peer">
-        <NuxtLink :to="section.href" @click="$emit('jump')">{{ section.text }}</NuxtLink>
+        <NuxtLink :to="`#${link.id}`" @click="$emit('jump')">{{ link.text }}</NuxtLink>
         <label><input type="checkbox" hidden class="peer" :checked="depth > 1" /><ChevronDownIcon class="w-4 h-4 peer-checked:rotate-180 transition-transform" /></label>
       </div>
       <ul class="ml-4 max-h-0 peer-has-[:checked]:max-h-96 overflow-hidden transition-all">
-        <li v-for="subsection in section.children" :key="subsection.text">
+        <li v-for="link1 in link.children" :key="link1.id">
           <div class="flex justify-between items-center gap-4 peer">
-            <NuxtLink :to="subsection.href" @click="$emit('jump')">{{ subsection.text }}</NuxtLink>
+            <NuxtLink :to="`#${link1.id}`" @click="$emit('jump')">{{ link1.text }}</NuxtLink>
             <label><input type="checkbox" hidden class="peer" :checked="depth > 2" /><ChevronDownIcon class="w-4 h-4 peer-checked:rotate-180 transition-transform" /></label>
           </div>
           <ul class="ml-8 max-h-0 peer-has-[:checked]:max-h-96 overflow-hidden transition-all">
-            <li v-for="subsubsection in subsection.children" :key="subsubsection.text">
+            <li v-for="link2 in link1.children" :key="link2.id">
               <div class="flex justify-between items-center gap-4 peer">
-                <NuxtLink :to="subsubsection.href" @click="$emit('jump')">{{ subsubsection.text }}</NuxtLink>
+                <NuxtLink :to="`#${link2.id}`" @click="$emit('jump')">{{ link2.text }}</NuxtLink>
                 <label><input type="checkbox" hidden class="peer" :checked="depth > 3" /><ChevronDownIcon class="w-4 h-4 peer-checked:rotate-180 transition-transform" /></label>
               </div>
               <ul class="ml-8 max-h-0 peer-has-[:checked]:max-h-96 overflow-hidden transition-all">
-                <li v-for="subsubsubsection in subsubsection.children" :key="subsubsubsection.text">
+                <li v-for="link3 in link2.children" :key="link3.id">
                   <div class="flex justify-between items-center gap-4 peer">
-                    <NuxtLink :to="subsubsubsection.href" @click="$emit('jump')">{{ subsubsubsection.text }}</NuxtLink>
+                    <NuxtLink :to="`#${link3.id}`" @click="$emit('jump')">{{ link3.text }}</NuxtLink>
                     <label><input type="checkbox" hidden class="peer" :checked="depth > 4" /><ChevronDownIcon class="w-4 h-4 peer-checked:rotate-180 transition-transform" /></label>
                   </div>
                   <ul class="ml-8 max-h-0 peer-has-[:checked]:max-h-96 overflow-hidden transition-all">
-                    <li v-for="subsubsubsubsection in subsubsubsection.children" :key="subsubsubsubsection.text">
-                      <NuxtLink :to="subsubsubsubsection.href" @click="$emit('jump')">{{ subsubsubsubsection.text }}</NuxtLink>
+                    <li v-for="link4 in link3.children" :key="link4.id">
+                      <NuxtLink :to="`#${link4.id}`" @click="$emit('jump')">{{ link4.text }}</NuxtLink>
                     </li>
                   </ul>
                 </li>
@@ -40,39 +40,16 @@
 
 <script setup lang="ts">
 import { ChevronDownIcon } from '@heroicons/vue/16/solid'
+import type { TocLink } from '@nuxt/content'
 
 interface Props {
   depth?: number
+  value?: TocLink[]
 }
 
-const { depth = 3 } = defineProps<Props>()
+const { depth = 3, value = undefined } = defineProps<Props>()
 
 defineEmits<{
   (e: 'jump'): void
 }>()
-
-const toc = ref()
-interface Section {
-  text: string | null
-  href: string | null
-  children: Section[]
-}
-function getAllSections(startLevel = 2, endLevel = 6) {
-  const list: Section[] = []
-  if (startLevel <= endLevel) {
-    document.querySelectorAll(`h${startLevel}`).forEach((el) => {
-      list.push({
-        text: el.textContent,
-        href: `#${el.id}`,
-        children: getAllSections(startLevel + 1, endLevel)
-      })
-    })
-  }
-  return list
-}
-onMounted(
-  () => {
-    toc.value = getAllSections()
-  }
-)
 </script>

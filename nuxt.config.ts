@@ -42,6 +42,12 @@ export default defineNuxtConfig({
   content: {
     highlight: {
       theme: 'github-light'
+    },
+    markdown: {
+      toc: {
+        depth: 5,
+        searchDepth: 5
+      }
     }
   },
   compatibilityDate: '2024-04-03',

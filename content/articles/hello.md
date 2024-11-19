@@ -6,7 +6,7 @@ title: Hello
 这是一个测试页面。
 此页面用来测试网页外观。
 
-:toc
+:toc{:value="toc"}
 
 - [x] Test
 
