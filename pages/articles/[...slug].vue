@@ -84,7 +84,7 @@ onMounted(() => {
     @apply text-3xl md:text-4xl font-bold border-b drop-shadow-sm mb-4 md:mb-6 pb-1;
   }
   h2 {
-    @apply text-2xl md:text-3xl font-bold border-l-4 border-pink-800 dark:border-pink-200 bg-gradient-to-r from-fuchsia-900 to-gray-900 pl-4 py-1 my-4;
+    @apply text-2xl md:text-3xl font-bold border-l-4 border-pink-800 dark:border-pink-200 bg-gradient-to-r from-fuchsia-50 to-white dark:from-fuchsia-900 dark:to-gray-900 pl-4 py-1 my-4;
   }
   h3 {
     @apply text-xl md:text-2xl font-bold my-4 border-l-8 border-pink-800 dark:border-pink-200 pl-2 md:pl-4;
