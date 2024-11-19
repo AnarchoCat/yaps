@@ -3,7 +3,7 @@
     <ContentRenderer :value="data as any">
       <ContentRendererMarkdown :value="data as any" :data="mdcVars" />
     </ContentRenderer>
-    <button class="fixed right-4 bottom-4 md:right-6 md:bottom-8 p-2 rounded-full border border-gray-300 bg-white z-50 shadow" @click="toggleTocModal">
+    <button class="fixed right-4 bottom-4 md:right-6 md:bottom-8 p-2 rounded-full border border-gray-300 bg-white z-50 shadow hover:shadow-md transition-all opacity-70 hover:opacity-100" @click="toggleTocModal">
       <ListBulletIcon class="w-6 h-6" />
     </button>
     <dialog ref="toc-modal" autofocus class="fixed box-content left-0 md:left-1/2 top-0 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 m-0 w-full h-full md:w-fit md:h-fit open:flex flex-col items-center px-4 pt-10 pb-4 md:rounded md:backdrop:bg-black/30">
