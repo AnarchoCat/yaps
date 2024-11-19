@@ -3,7 +3,7 @@
     <Head>
       <Title />
     </Head>
-    <h1>首页</h1>
+    <h1 hidden>首页</h1>
     <div class="mx-auto w-fit text-8xl animate-spin text-center">🙀</div>
     <article class="text-sm md:text-base mx-auto w-fit p-4 border-2 border-rose-600 shadow shadow-red-800">
       <p class="text-center">天生万物以养人，<br class="hidden" />世人犹怨天不仁。</p>
