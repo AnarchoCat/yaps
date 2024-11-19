@@ -40,8 +40,12 @@ function switchTheme() {
   )
 }
 
-const links = [
+const links: {
+  label: string
+  to: string
+}[] = [
   { label: '首页', to: '/' },
-  { label: '文章', to: '/articles/' },
+  { label: '文章', to: '/articles' },
+  { label: '好友', to: '/friends' }
 ]
 </script>
