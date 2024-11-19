@@ -1,5 +1,8 @@
 <template>
   <article class="container mx-auto p-4 md:py-8">
+    <Head>
+      <Title>友人帐</Title>
+    </Head>
     <h1 class="text-center font-bold text-2xl md:text-3xl mb-8">没落大小姐的友人帐</h1>
     <div class="flex flex-col items-center gap-8 text-center">
       <section>

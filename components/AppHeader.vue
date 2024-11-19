@@ -46,6 +46,7 @@ const links: {
 }[] = [
   { label: '首页', to: '/' },
   { label: '文章', to: '/articles' },
-  { label: '好友', to: '/friends' }
+  { label: '好友', to: '/friends' },
+  { label: '关于', to: '/about' }
 ]
 </script>
