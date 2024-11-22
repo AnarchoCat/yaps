@@ -1,6 +1,6 @@
 <template>
   <li>
-    <label v-if="classValue?.includes('task-list-item')">
+    <label v-if="(attrs.class as string)?.includes('task-list-item')">
       <slot />
     </label>
     <slot v-else />
@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 const attrs = useAttrs()
-const classValue: string | undefined = attrs.class ? attrs.class as string : undefined
 </script>
 
 <style lang="postcss">

@@ -1,7 +1,7 @@
 <template>
   <component :is="tag" ref="list" class="relative">
     <slot />
-    <button v-if="classValue?.includes('contains-task-list')" type="button" class="absolute top-0 right-0" @click="clear"><ArrowPathIcon class="size-4" /></button>
+    <button v-if="(attrs.class as string)?.includes('contains-task-list')" type="button" class="absolute top-0 right-0" @click="clear"><ArrowPathIcon class="size-4" /></button>
   </component>
 </template>
 
@@ -13,7 +13,6 @@ const { tag = 'ul' } = defineProps<{
 }>()
 
 const attrs = useAttrs()
-const classValue: string | undefined = attrs.class ? attrs.class as string : undefined
 const list = useTemplateRef('list')
 
 function clear() {
