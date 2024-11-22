@@ -17,6 +17,9 @@ const { src = '', alt = '' } = defineProps<{
 }>()
 
 const refinedSrc = computed(() => {
+  if (src.startsWith('/')) {
+    return src
+  }
   return `/img/content/${src}`
 })
 </script>
