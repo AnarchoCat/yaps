@@ -10,7 +10,7 @@ title: 本站的技术和设计相关资料
 
 本站采用Nuxt 3框架。
 
-使用了一下模块：
+使用了以下模块：
 
 - nuxt/image
 - nuxt/content
