@@ -8,11 +8,18 @@
 
 <script setup lang="ts">
 const siteTitle = '没落大小姐的秘密茶会'
-useHead({
+const i18nHead = useLocaleHead()
+
+useHead(() => ({
+  htmlAttrs: {
+    lang: i18nHead.value.htmlAttrs!.lang
+  },
+  link: [...(i18nHead.value.link || [])],
+  meta: [...(i18nHead.value.meta || [])],
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} - ${siteTitle}` : siteTitle
   }
-})
+}))
 
 onMounted(() => {
   document.documentElement.classList.toggle(

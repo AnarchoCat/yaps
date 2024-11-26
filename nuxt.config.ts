@@ -73,6 +73,27 @@ export default defineNuxtConfig({
       }
     }
   },
+  i18n: {
+    baseUrl: '/',
+    locales: [
+      {
+        code: 'en',
+        language: 'en',
+        name: 'English'
+      },
+      {
+        code: 'zh',
+        language: 'zh-Hans',
+        name: '简体中文'
+      },
+      {
+        code: 'ja',
+        language: 'ja',
+        name: '日本語'
+      }
+    ],
+    defaultLocale: 'zh'
+  },
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css'
   }
