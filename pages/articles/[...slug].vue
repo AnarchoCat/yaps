@@ -1,5 +1,8 @@
 <template>
-  <article ref="article" class="content-article container max-w-screen-lg p-4 md:px-6 md:py-8 mx-auto">
+  <article ref="article" :lang class="content-article container max-w-screen-lg p-4 md:px-6 md:py-8 mx-auto">
+    <Head>
+      <Title>{{ data?.title }}</Title>
+    </Head>
     <ContentRenderer :value="data as any">
       <ContentRendererMarkdown :value="data as any" :data="mdcVars" />
     </ContentRenderer>
@@ -21,10 +24,27 @@
 import { ListBulletIcon, XMarkIcon } from '@heroicons/vue/24/solid'
 import { ArrowUpCircleIcon } from '@heroicons/vue/24/outline'
 
+// This is used to remove the locale prefix in the path
 const switchLocalePath = useSwitchLocalePath()
-const { defaultLocale } = useI18n()
-const { data } = await useAsyncData('page-data', () => queryContent(switchLocalePath(defaultLocale)).findOne())
-const tocLinks = data.value?.body?.toc?.links
+
+const { defaultLocale, locale, locales, availableLocales } = useI18n()
+
+// Query content data
+const { data: dataList } = await useAsyncData('page-data', () => queryContent(switchLocalePath(defaultLocale)).find())
+const dataLocale = dataList.value?.find(data => data.language === locale.value || data._path?.split('.').pop() === locale.value)
+const data = dataLocale ? dataLocale : dataList.value?.find(data => !('language' in data) || data.language === defaultLocale)
+
+// Set lang attribute of article element
+const lang = ref<string>()
+if (availableLocales.includes(data?.language)) {
+  lang.value = locales.value.find(value => value.code === data?.language).language
+} else {
+  lang.value = locales.value.find(value => value.code === defaultLocale).language
+}
+
+// Get toc links
+const tocLinks = data?.body?.toc?.links
+
 // Data passed to markdown. Can access with $doc.varname just like front matter.
 const mdcVars = ref({ toc: tocLinks })
 
