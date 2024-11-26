@@ -14,7 +14,7 @@
       </div>
       <LanguageIcon ref="localeIcon" class="absolute top-3 right-12 md:right-4 size-6" @click="showLocales = !showLocales" />
     </nav>
-    <div v-show="showLocales" class="flex flex-col items-stretch border border-indigo-800 rounded bg-white absolute top-10 right-12">
+    <div v-show="showLocales" class="flex flex-col items-stretch border border-indigo-800 rounded bg-white absolute top-10 right-12 z-10">
       <NuxtLink v-for="availableLocale in availableLocales" :key="availableLocale.code" :to="switchLocalePath(availableLocale.code)" class="px-2 text-center hover:bg-fuchsia-50">{{ availableLocale.name }}</NuxtLink>
     </div>
   </header>

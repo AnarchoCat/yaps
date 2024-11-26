@@ -21,8 +21,9 @@
 import { ListBulletIcon, XMarkIcon } from '@heroicons/vue/24/solid'
 import { ArrowUpCircleIcon } from '@heroicons/vue/24/outline'
 
-const route = useRoute()
-const { data } = await useAsyncData('page-data', () => queryContent(route.path).findOne())
+const switchLocalePath = useSwitchLocalePath()
+const { defaultLocale } = useI18n()
+const { data } = await useAsyncData('page-data', () => queryContent(switchLocalePath(defaultLocale)).findOne())
 const tocLinks = data.value?.body?.toc?.links
 // Data passed to markdown. Can access with $doc.varname just like front matter.
 const mdcVars = ref({ toc: tocLinks })
