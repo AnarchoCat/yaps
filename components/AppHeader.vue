@@ -87,7 +87,7 @@ en:
 ja:
   home: ホーム
   articles: 記事
-  friends: 友人
+  friends: フレンド
   about: プロフィール
   logo: 🎀没落令嬢の秘密のお茶会🍵
 </i18n>

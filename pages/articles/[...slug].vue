@@ -36,8 +36,11 @@ const data = dataLocale ? dataLocale : dataList.value?.find(data => !('language'
 
 // Set lang attribute of article element
 const lang = ref<string>()
-if (availableLocales.includes(data?.language)) {
-  lang.value = locales.value.find(value => value.code === data?.language).language
+const contentLocale = availableLocales.find(value => data?._path?.endsWith(`.${value}`))
+if (contentLocale) {
+  lang.value = locales.value.find(value => value.code === contentLocale).language
+} else if (data?.language) {
+  lang.value = data.language
 } else {
   lang.value = locales.value.find(value => value.code === defaultLocale).language
 }
