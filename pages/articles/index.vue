@@ -25,13 +25,15 @@ const { data: defaultLocaleContentList } = await useAsyncData('default-locale-co
     $not: {
       $containsAny: availableLocales.map(value => `.${value}`)
     }
-  }
+  },
+  _draft: false
 }).find())
 
 const { data: currentLocaleContentList } = await useAsyncData('current-locale-content-list-2', () => queryContent('article').where({
   _path: {
     $contains: `.${locale.value}`
-  }
+  },
+  _draft: false
 }).find())
 
 const noLocalizationContentList = defaultLocaleContentList.value?.filter(content => currentLocaleContentList.value?.find(item => item._path == `${content._path}.${locale.value}`) === undefined)
