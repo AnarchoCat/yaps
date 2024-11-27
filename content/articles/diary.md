@@ -1,5 +1,6 @@
 ---
 title: 日记
+draft: true
 ---
 
 # 日记
