@@ -7,7 +7,8 @@
 </template>
 
 <script setup lang="ts">
-const siteTitle = '没落大小姐的秘密茶会'
+const { t } = useI18n({ useScope: 'global' })
+const siteTitle = computed(() => t('siteTitle'))
 const i18nHead = useLocaleHead()
 
 useHead(() => ({
@@ -17,7 +18,7 @@ useHead(() => ({
   link: [...(i18nHead.value.link || [])],
   meta: [...(i18nHead.value.meta || [])],
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - ${siteTitle}` : siteTitle
+    return titleChunk ? `${titleChunk} - ${siteTitle.value}` : siteTitle.value
   }
 }))
 

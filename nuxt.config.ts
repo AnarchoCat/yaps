@@ -75,6 +75,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     baseUrl: '/',
+    vueI18n: './i18n.config.ts',
     locales: [
       {
         code: 'en',

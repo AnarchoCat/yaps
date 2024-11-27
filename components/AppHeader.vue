@@ -1,7 +1,7 @@
 <template>
   <header class="relative">
     <nav class="relative flex flex-col md:flex-row md:justify-end lg:justify-center items-center gap-2 md:px-20 pt-12 md:pt-0 md:h-12 max-h-12 has-[:checked]:max-h-96 has-[:checked]:pb-4 md:pb-0 overflow-hidden transition-all bg-gradient-to-br from-fuchsia-50 to-sky-50 dark:from-fuchsia-900 dark:to-sky-900 shadow md:shadow-lg shadow-sky-50">
-      <NuxtLink to="/" class="absolute top-3 left-4 md:left-6 text-pink-800 dark:text-pink-50 saturate-150 drop-shadow-sm font-bold">🎀没落大小姐的秘密茶会🍵</NuxtLink>
+      <NuxtLink to="/" class="absolute top-3 left-4 md:left-6 text-pink-800 dark:text-pink-50 saturate-150 drop-shadow-sm font-bold">{{ t('logo') }}</NuxtLink>
       <label class="absolute top-3 right-4 md:hidden">
         <input v-model="isChecked" type="checkbox" class="peer" hidden />
         <BarsArrowDownIcon class="text-indigo-800 dark:text-indigo-50 size-6 peer-checked:rotate-180 transition-transform" />
@@ -77,14 +77,17 @@ zh:
   articles: 文章
   friends: 好友
   about: 关于
+  logo: 🎀没落大小姐的秘密茶会🍵
 en:
   home: Home
   articles: Articles
   friends: Friends
   about: About
+  logo: 🎀🍵
 ja:
   home: ホーム
   articles: 記事
   friends: 友人
   about: プロフィール
+  logo: 🎀没落令嬢の秘密のお茶会🍵
 </i18n>
